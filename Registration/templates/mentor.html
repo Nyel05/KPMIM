@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMIM REGISTRATION</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<style>
+    body {
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           color: #ffffff;
+       }
+</style>
+<body>
+    <h1>Kolej Professional MARA Indera Mahkota</h1>
+    <h2>MENTOR</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        Mentor ID: <input type="text" name="MID"><br><br>
+        Mentor Name: <input type="text" name="MNAME"><br><br>
+        Mentor Email: <input type="text" name="MEMAIL"><br><br>
+        <input type="submit" value="SAVE"><br><br>
+    </form>
+    <br><br>
+    {{ message }} <!-- Corrected key -->
+    <br><br>
+        <table border="1">
+            <th>Mentor ID</th><th>Mentor Name</th><th>Email</th>
+
+        {% for x in allmentor %}
+        <tr>
+            <td>{{ x.mentorCd }}</td>
+            <td>{{ x.mentorName }}</td>
+            <td>{{ x.mentorEmail }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+</body>
+
+<a href="{% url 'index' %}">Homepage</a>
+</body>
+</html>

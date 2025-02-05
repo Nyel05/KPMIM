@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMIM REGISTRATION</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<style>
+    body {
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           color: #ffffff;
+       }
+</style>
+   
+<body>
+    <h1>Welcome To KPM Indera Mahkota</h1>
+    <strong>UPDATE COURSE</strong><br><br>
+    <form action="save_update_course/{{data.save}}" method="post">
+        {% csrf_token %}
+        Course Code : <input type="text" name="code" value="{{data.code}}" disabled="false"> <br>
+        Course Description : <input type="text" name="description" value="{{data.description}}"> <br>
+        <input type="submit" value="SAVE">
+    </form>
+    <br>
+
+    <p>{{ message }}</p> <!-- Display error message if no data is found -->
+
+    {% if data %}
+    <table border="1">
+        <tr>
+            <th>CODE</th>
+            <th>DESCRIPTION</th>
+            <th>UPDATE?</th>
+        </tr>
+        {% for data in allcourse %}
+        <tr>
+            <td>{{ x.code }}</td>
+            <td>{{ x.description }}</td> 
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No mentors found. Try again.</p>
+    {% endif %}
+
+    <br><br>
+    <ul><a href="{% url 'index' %}">INDEX PAGE</a></ul>
+</body>
+</html>

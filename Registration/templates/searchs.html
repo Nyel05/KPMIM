@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMIM REGISTRATION</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<style>
+    body {
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           color: #ffffff;
+       }
+</style>
+   
+<body>
+    <h1>Welcome To KPM Indera Mahkota</h1>
+    <strong>SEARCH MENTOR</strong><br><br>
+    <form action="" method="get">
+        Enter Mentor: <input type="text" name="mentorCd" placeholder="Enter Mentor Code"><br><br>
+        <input type="submit" value="SEARCH">
+    </form>
+    <br>
+
+    <p>{{ message }}</p> <!-- Display error message if no data is found -->
+
+    {% if data %}
+    <table border="1">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {% for x in data %}
+        <tr>
+            <td>{{ x.mentorCd }}</td>
+            <td>{{ x.mentorName }}</td>
+            <td>{{ x.mentorEmail }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No mentors found. Try again.</p>
+    {% endif %}
+
+    <br><br>
+    <ul><a href="{% url 'index' %}">INDEX PAGE</a></ul>
+</body>
+</html>
